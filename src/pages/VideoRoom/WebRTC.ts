@@ -44,6 +44,9 @@ export const peerUpdating = (
             offer: peerConnection.localDescription,
             to: userSocketId,
           })
-        : socket.emit("make-offer-to-all-users", {offer: peerConnection.localDescription, to: meetingId});
+        : socket.emit("make-offer-to-all-users", {
+            offer: peerConnection.localDescription,
+            to: meetingId,
+          });
     });
 };

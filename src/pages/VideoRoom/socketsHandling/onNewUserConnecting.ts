@@ -1,5 +1,6 @@
 import { RTC_CONFIG } from "../../../config";
-import {peerUpdating} from "../WebRTC";
+import { IPeerConnection, peerUpdating } from "../WebRTC";
+import { registerNewConnection } from "./socketsGlobalEvents";
 
 export const onNewUserToConnect = (
   socket: any,
@@ -19,29 +20,16 @@ export const onNewUserToConnect = (
     };
   };
 
-  socket.on("candidate-to-new-user", (candidate: RTCIceCandidate) => {
-    peerConnection
-      .addIceCandidate(new RTCIceCandidate(candidate))
-      .catch((e: Error) => {
-        throw new Error(e.message);
-      });
-    /*if (localVideo !== null) {
-      const stream = localVideo.srcObject as MediaStream;
-      stream
-          .getTracks()
-          .forEach((track) => peerConnection.addTrack(track, stream));
-    }
-    peerUpdating(peerConnection, socket, meetingId, null);*/
-  });
-
-  /*socket.on("candidate-from-all-user", (candidate: RTCIceCandidate) => {
-    peerConnection
+  socket.on(
+    "candidate-to-new-user",
+    (mySocketId: string, candidate: RTCIceCandidate) => {
+      peerConnection
         .addIceCandidate(new RTCIceCandidate(candidate))
         .catch((e: Error) => {
           throw new Error(e.message);
         });
-    peerUpdating(peerConnection, socket, meetingId, null);
-  });*/
+    }
+  );
 
   socket.on("offer-made", async ({ mySocketId, offer, from }: any) => {
     await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
@@ -59,10 +47,9 @@ export const onNewUserToConnect = (
         socket.emit("candidate", from, event.candidate, mySocketId);
       }
     };
-
   });
 
-  /*socket.on("answer-made-from-all-users", ({ answer }: any) => {
-    peerConnection.setRemoteDescription(answer);
-  });*/
+  socket.on("get-video", (from: string) => {
+    registerNewConnection(from, meetingId, socket, localVideo);
+  });
 };

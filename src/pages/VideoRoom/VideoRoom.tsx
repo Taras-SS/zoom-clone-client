@@ -25,6 +25,7 @@ export default ({ meetingId }: IProp) => {
   const [classes] = useState(styles());
   const [socket] = useState(socketIoClient(SERVER_URL));
   const [activeUsers, setActiveUsers] = useState<IUser[]>([]);
+  const [selectedCamera, setSelectedCamera] = useState<string | null>(null);
 
   const changeLoadingState = (): void => {
     setLoading((prevState) => !prevState);
@@ -57,7 +58,12 @@ export default ({ meetingId }: IProp) => {
       addNewUser,
       setIntialUsers
     );
-    onNewUserToConnect(socket, remoteVideo.current, videoElement.current, meetingId);
+    onNewUserToConnect(
+      socket,
+      remoteVideo.current,
+      videoElement.current,
+      meetingId
+    );
     console.log(223);
     return () => {
       socket.close();
