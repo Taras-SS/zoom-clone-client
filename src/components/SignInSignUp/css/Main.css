@@ -1,0 +1,23 @@
+.MuiInputBase-root{
+    border-radius: 8px;
+    width: 100%;
+    margin-bottom: 20px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    -webkit-rtl-ordering: logical;
+    padding: 6px 12px;
+}
+
+.MuiButton-label{
+    height: inherit;
+}
+
+#nameSurnameWrapper{
+    display: flex;
+    justify-content: space-between;
+}
+
+#nameSurnameWrapper > div{
+    width: 48%;
+}

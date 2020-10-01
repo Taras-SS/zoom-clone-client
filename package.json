@@ -1,8 +1,10 @@
 {
-  "name": "insta-likes",
+  "name": "zoom-app-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -10,16 +12,34 @@
     "@types/node": "^12.12.59",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
+    "@types/react-redux": "^7.1.9",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/socket.io-client": "^1.4.33",
+    "@types/yup": "^0.29.7",
+    "axios": "^0.20.0",
+    "formik": "^2.1.5",
+    "material-ui-password-field": "^2.1.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3",
-    "typescript": "^3.7.5"
+    "react-facebook-login": "^4.1.1",
+    "react-google-login": "^5.1.21",
+    "react-redux": "^7.2.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^3.4.3",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0",
+    "socket.io-client": "^2.3.0",
+    "typescript": "^3.7.5",
+    "yup": "^0.29.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prettier": "npx prettier --write **/*.{js,jsx,ts,tsx,json} && npx prettier --write *.{js,jsx,ts,tsx,json}"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,5 +55,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "prettier": "^2.1.2",
+    "prettier-quick": "0.0.5"
   }
 }
